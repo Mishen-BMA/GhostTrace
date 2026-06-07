@@ -1,6 +1,6 @@
 import requests
 import threading
-from modules.colors import field, section, info, GREEN, GRAY, WHITE, RESET
+from ghosttrace.modules.colors import field, section, info, GREEN, GRAY, WHITE, RESET
 
 PLATFORMS = [
     ("GitHub",       "https://github.com/{u}",                       "status", 200),
@@ -30,7 +30,6 @@ PLATFORMS = [
 
 HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
 
-
 def _check(username, name, url_tpl, check_type, match, found, lock):
     url = url_tpl.replace("{u}", username)
     try:
@@ -43,27 +42,21 @@ def _check(username, name, url_tpl, check_type, match, found, lock):
     except Exception:
         pass
 
-
 def scan_username(username: str) -> dict:
     results = {"target": username, "type": "username"}
-
     section(f"USERNAME HUNT  —  @{username}")
     print(f"  {GRAY}Scanning {len(PLATFORMS)} platforms, please wait...{RESET}\n")
 
     found = {}
     lock  = threading.Lock()
     threads = [
-        threading.Thread(
-            target=_check,
-            args=(username, name, url_tpl, ct, match, found, lock)
-        )
+        threading.Thread(target=_check, args=(username, name, url_tpl, ct, match, found, lock))
         for name, url_tpl, ct, match in PLATFORMS
     ]
     for t in threads: t.start()
     for t in threads: t.join()
 
     section(f"RESULTS  —  {len(found)} of {len(PLATFORMS)} platforms matched")
-
     all_checked = []
     for name, url_tpl, _, _ in PLATFORMS:
         if name in found:

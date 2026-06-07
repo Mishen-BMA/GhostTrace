@@ -1,11 +1,10 @@
 import socket
 import requests
-from modules.colors import field, section, error, warn, info, GREEN, RED, YELLOW, GRAY, RESET
+from ghosttrace.modules.colors import field, section, error, warn, info, GREEN, RED, YELLOW, GRAY, RESET
 
 def scan_ip(ip: str) -> dict:
     results = {"target": ip, "type": "ip"}
 
-    # ── Geolocation ──────────────────────────────────────────────
     section("GEOLOCATION & NETWORK INFO")
     try:
         r = requests.get(
@@ -35,7 +34,6 @@ def scan_ip(ip: str) -> dict:
     except Exception as e:
         error(f"Geo lookup failed: {e}")
 
-    # ── Reverse DNS ──────────────────────────────────────────────
     section("REVERSE DNS")
     try:
         hostname = socket.gethostbyaddr(ip)[0]
@@ -47,10 +45,12 @@ def scan_ip(ip: str) -> dict:
     except Exception as e:
         error(str(e))
 
-    # ── Threat Intel ─────────────────────────────────────────────
     section("THREAT INTELLIGENCE (AbuseIPDB)")
-    ABUSEIPDB_KEY = "f3d4dfc7915c519a83d6c99bee7d685423d71f76b35e6651924455dc661f4b1f5207d64572f27d37"
-    if ABUSEIPDB_KEY != "YOUR_ABUSEIPDB_API_KEY":
+    import os
+    from dotenv import load_dotenv
+    load_dotenv()
+    ABUSEIPDB_KEY = os.getenv("ABUSEIPDB_KEY", None)
+    if ABUSEIPDB_KEY:
         try:
             headers = {"Key": ABUSEIPDB_KEY, "Accept": "application/json"}
             r = requests.get(
@@ -70,10 +70,9 @@ def scan_ip(ip: str) -> dict:
         except Exception as e:
             error(str(e))
     else:
-        warn("AbuseIPDB key not set — open modules/ip_lookup.py to add it")
+        warn("AbuseIPDB key not set — set the ABUSEIPDB_KEY environment variable or create a .env file with ABUSEIPDB_KEY=yourkey")
         info("Get a free key at: https://www.abuseipdb.com/register")
 
-    # ── Port Scan ────────────────────────────────────────────────
     section("PORT SCAN  (Top 15 Common Ports)")
     common_ports = {
         21:   "FTP",      22:   "SSH",      23:   "Telnet",

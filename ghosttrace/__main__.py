@@ -1,20 +1,18 @@
-#!/usr/bin/env python3
 import sys
 import os
 
-# Fix Windows UTF-8 output
 if sys.platform == "win32":
     import io
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 
 import argparse
-from modules.colors import enable_windows_ansi, GREEN, CYAN, YELLOW, WHITE, GRAY, RED, RESET
-from modules.banner import print_banner
-from modules.detector import detect_target_type
-from modules.ip_lookup import scan_ip
-from modules.domain_lookup import scan_domain
-from modules.username_lookup import scan_username
-from modules.reporter import save_report
+from ghosttrace.modules.colors import enable_windows_ansi, GREEN, CYAN, YELLOW, WHITE, GRAY, RED, RESET
+from ghosttrace.modules.banner import print_banner
+from ghosttrace.modules.detector import detect_target_type
+from ghosttrace.modules.ip_lookup import scan_ip
+from ghosttrace.modules.domain_lookup import scan_domain
+from ghosttrace.modules.username_lookup import scan_username
+from ghosttrace.modules.reporter import save_report
 
 enable_windows_ansi()
 
@@ -28,6 +26,8 @@ def parse_args():
     parser.add_argument("-o", "--output", help="Save report (e.g. report.json)", metavar="FILE")
     parser.add_argument("-t", "--type", choices=["ip", "domain", "username"],
                         help="Force target type")
+    parser.add_argument("-n", "--no-prompt", action="store_true",
+                        help="Do not prompt before exit (useful for non-interactive runs)")
     return parser.parse_args()
 
 
@@ -87,8 +87,8 @@ def main():
         print(f"  {GREEN}[✓]{RESET} Report saved → {WHITE}{args.output}{RESET}")
 
     print(f"\n  {GRAY}[GhostTrace] Scan complete. Stay invisible.{RESET}\n")
-
-    input(f"  {YELLOW}Press Enter to exit...{RESET}")
+    if not getattr(args, "no_prompt", False) and sys.stdin.isatty():
+        input(f"  {YELLOW}Press Enter to exit...{RESET}")
 
 
 if __name__ == "__main__":

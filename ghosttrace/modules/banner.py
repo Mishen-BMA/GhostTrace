@@ -1,4 +1,4 @@
-from modules.colors import enable_windows_ansi, GREEN, GRAY, RESET
+from ghosttrace.modules.colors import enable_windows_ansi, GREEN, GRAY, RESET
 
 enable_windows_ansi()
 

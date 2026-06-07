@@ -1,3 +1,22 @@
+Metadata-Version: 2.4
+Name: ghosttrace-osint
+Version: 1.0.0
+Summary: OSINT Recon Engine — IP, Domain, Username Intelligence
+Home-page: https://github.com/YOURUSERNAME/ghosttrace
+Author: YourName
+Author-email: youremail@gmail.com
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Security
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests>=2.28.0
+Requires-Dist: python-dotenv>=1.0.0
+Dynamic: license-file
+
 # GhostTrace OSINT Recon Engine
 
 GhostTrace is an OSINT reconnaissance tool for IP addresses, domains, and usernames.
@@ -59,24 +78,6 @@ If you want to force the target type:
 ghosttrace 8.8.8.8 -t ip
 ghosttrace example.com -t domain
 ghosttrace johndoe -t username
-```
-
-## Configuration
-
-- **AbuseIPDB key**: To enable AbuseIPDB threat lookups set the `ABUSEIPDB_KEY` environment variable (or create a `.env` file with `ABUSEIPDB_KEY=yourkey`). If not set, the tool skips AbuseIPDB checks.
-- **Non-interactive runs**: Use `--no-prompt` (or `-n`) to avoid the final press-Enter prompt when running in scripts or CI: `ghosttrace example.com --no-prompt`.
-- **Remove local PyPI token**: If you created or used a `~/.pypirc` file for publishing, remove it after publishing to avoid leaving tokens on disk.
-
-Windows PowerShell:
-
-```powershell
-Remove-Item -Path $env:USERPROFILE\.pypirc -Force
-```
-
-Unix / Git Bash:
-
-```bash
-rm ~/.pypirc
 ```
 
 ## Project Structure

@@ -1,0 +1,2 @@
+[console_scripts]
+ghosttrace = ghosttrace.__main__:main

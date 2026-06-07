@@ -6,7 +6,6 @@ def detect_target_type(target: str) -> str:
     domain_pattern = re.compile(
         r"^(?:[a-zA-Z0-9](?:[a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$"
     )
-
     if ipv4_pattern.match(target) or ipv6_pattern.match(target):
         return "ip"
     elif domain_pattern.match(target):

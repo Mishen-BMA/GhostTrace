@@ -10,7 +10,6 @@ def save_report(target: str, target_type: str, results: dict, filepath: str):
         "type":      target_type,
         "results":   results
     }
-
     if filepath.endswith(".json"):
         with open(filepath, "w") as f:
             json.dump(report, f, indent=4)
