@@ -2,16 +2,6 @@
 
 `ghosttrace-osint` is an OSINT reconnaissance tool for IP addresses, domains, and usernames.
 
-## Important
-
-There is already a different package named `ghosttrace` on PyPI. Install this project as `ghosttrace-osint`.
-
-If you previously installed the conflicting package, remove it first:
-
-```bash
-pip uninstall ghosttrace
-```
-
 ## Install
 
 Install this package from PyPI:
@@ -68,16 +58,30 @@ ghosttrace example.com -t domain
 ghosttrace johndoe -t username
 ```
 
-If `ghosttrace` is not recognized in Windows CMD/PowerShell after install:
+If `ghosttrace` is not recognized in Windows CMD/PowerShell after install, try the included fixer:
 
 ```powershell
-py -m pip install --upgrade --force-reinstall ghosttrace-osint
+py -m ghosttrace.post_install
 ```
 
-Then close and reopen the terminal and run:
+If the `ghosttrace-fixpath` console script was installed and is on PATH, you can run instead:
+
+```powershell
+ghosttrace-fixpath
+```
+
+After running the fixer, close and reopen your terminal, then run:
 
 ```powershell
 ghosttrace --help
+```
+
+Recommended: use `pipx` for CLI tools to avoid PATH issues:
+
+```powershell
+py -m pip install --user pipx
+py -m pipx ensurepath
+py -m pipx install ghosttrace-osint
 ```
 
 ## Configuration
