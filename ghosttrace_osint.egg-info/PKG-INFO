@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: ghosttrace-osint
-Version: 1.0.2
+Version: 1.0.3
 Summary: OSINT Recon Engine — IP, Domain, Username Intelligence
 Home-page: https://github.com/YOURUSERNAME/ghosttrace
 Author: YourName
@@ -37,6 +37,13 @@ Install this package from PyPI:
 
 ```bash
 pip install ghosttrace-osint
+```
+
+On Windows, installation now attempts to auto-fix user PATH and also installs a `ghosttrace.bat` launcher.
+After install, open a new terminal window and run:
+
+```bash
+ghosttrace example.com
 ```
 
 ## Install From Source
@@ -80,6 +87,18 @@ ghosttrace example.com -t domain
 ghosttrace johndoe -t username
 ```
 
+If `ghosttrace` is not recognized in Windows CMD/PowerShell after install:
+
+```powershell
+py -m pip install --upgrade --force-reinstall ghosttrace-osint
+```
+
+Then close and reopen the terminal and run:
+
+```powershell
+ghosttrace --help
+```
+
 ## Configuration
 
 - **AbuseIPDB key**: To enable AbuseIPDB threat lookups set the `ABUSEIPDB_KEY` environment variable (or create a `.env` file with `ABUSEIPDB_KEY=yourkey`). If not set, the tool skips AbuseIPDB checks.
@@ -120,6 +139,7 @@ rm ~/.pypirc
 
 ```text
 GhostTrace/
+├── ghosttrace.bat
 ├── setup.py
 ├── setup.cfg
 ├── pyproject.toml

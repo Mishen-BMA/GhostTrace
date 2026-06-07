@@ -20,6 +20,13 @@ Install this package from PyPI:
 pip install ghosttrace-osint
 ```
 
+On Windows, installation now attempts to auto-fix user PATH and also installs a `ghosttrace.bat` launcher.
+After install, open a new terminal window and run:
+
+```bash
+ghosttrace example.com
+```
+
 ## Install From Source
 
 If you want to run `ghosttrace-osint` from the repository instead of PyPI:
@@ -59,6 +66,18 @@ If you want to force the target type:
 ghosttrace 8.8.8.8 -t ip
 ghosttrace example.com -t domain
 ghosttrace johndoe -t username
+```
+
+If `ghosttrace` is not recognized in Windows CMD/PowerShell after install:
+
+```powershell
+py -m pip install --upgrade --force-reinstall ghosttrace-osint
+```
+
+Then close and reopen the terminal and run:
+
+```powershell
+ghosttrace --help
 ```
 
 ## Configuration
@@ -101,6 +120,7 @@ rm ~/.pypirc
 
 ```text
 GhostTrace/
+├── ghosttrace.bat
 ├── setup.py
 ├── setup.cfg
 ├── pyproject.toml
