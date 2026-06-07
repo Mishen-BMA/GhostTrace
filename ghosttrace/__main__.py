@@ -1,64 +1,8 @@
 import sys
-import os
 
 if sys.platform == "win32":
     import io
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
-
-
-# Auto PATH fix for Windows
-def fix_windows_path():
-    if sys.platform == "win32":
-        try:
-            import sysconfig
-            import winreg
-            import os
-
-            scripts_path = sysconfig.get_path("scripts")
-            if not scripts_path or not os.path.isdir(scripts_path):
-                return
-
-            normalized_scripts_path = os.path.normcase(os.path.normpath(scripts_path))
-
-            reg_key = winreg.OpenKey(
-                winreg.HKEY_CURRENT_USER,
-                r"Environment",
-                0,
-                winreg.KEY_READ | winreg.KEY_WRITE
-            )
-            try:
-                try:
-                    current_path, _ = winreg.QueryValueEx(reg_key, "Path")
-                except FileNotFoundError:
-                    current_path = ""
-
-                path_entries = [
-                    os.path.normcase(os.path.normpath(entry.strip().strip('"')))
-                    for entry in current_path.split(";")
-                    if entry.strip()
-                ]
-
-                if normalized_scripts_path not in path_entries:
-                    new_path = current_path + (";" if current_path else "") + scripts_path
-                    winreg.SetValueEx(reg_key, "Path", 0, winreg.REG_EXPAND_SZ, new_path)
-
-                    import ctypes
-                    HWND_BROADCAST = 0xFFFF
-                    WM_SETTINGCHANGE = 0x001A
-                    ctypes.windll.user32.SendMessageW(
-                        HWND_BROADCAST, WM_SETTINGCHANGE, 0, "Environment"
-                    )
-
-                    print("\033[92m[✓] PATH fixed automatically!\033[0m")
-                    print("\033[93m[~] Please restart CMD for changes to take effect.\033[0m\n")
-            finally:
-                winreg.CloseKey(reg_key)
-
-        except Exception:
-            pass
-
-
-fix_windows_path()
 
 import argparse
 from ghosttrace.modules.colors import enable_windows_ansi, GREEN, CYAN, YELLOW, WHITE, GRAY, RED, RESET

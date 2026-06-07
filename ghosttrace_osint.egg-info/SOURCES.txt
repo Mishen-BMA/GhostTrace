@@ -1,6 +1,7 @@
 LICENSE
 MANIFEST.in
 README.md
+post_install.py
 pyproject.toml
 requirements.txt
 setup.cfg
