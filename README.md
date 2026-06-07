@@ -1,12 +1,12 @@
-# GhostTrace OSINT Recon Engine
+# ghosttrace-osint
 
-GhostTrace is an OSINT reconnaissance tool for IP addresses, domains, and usernames.
+`ghosttrace-osint` is an OSINT reconnaissance tool for IP addresses, domains, and usernames.
 
 ## Important
 
-There is already a different package named `ghosttrace` on PyPI. To avoid installing the wrong tool, install this project as `ghosttrace-osint`.
+There is already a different package named `ghosttrace` on PyPI. Install this project as `ghosttrace-osint`.
 
-If you already installed the conflicting package, remove it first:
+If you previously installed the conflicting package, remove it first:
 
 ```bash
 pip uninstall ghosttrace
@@ -22,7 +22,7 @@ pip install ghosttrace-osint
 
 ## Install From Source
 
-If you want to run GhostTrace from the repository instead of PyPI:
+If you want to run `ghosttrace-osint` from the repository instead of PyPI:
 
 ```bash
 git clone https://github.com/YOURUSERNAME/ghosttrace.git
@@ -39,7 +39,7 @@ ghosttrace example.com
 
 ## Usage
 
-The command stays `ghosttrace`:
+The command is `ghosttrace`:
 
 ```bash
 ghosttrace example.com
@@ -66,6 +66,24 @@ ghosttrace johndoe -t username
 - **AbuseIPDB key**: To enable AbuseIPDB threat lookups set the `ABUSEIPDB_KEY` environment variable (or create a `.env` file with `ABUSEIPDB_KEY=yourkey`). If not set, the tool skips AbuseIPDB checks.
 - **Non-interactive runs**: Use `--no-prompt` (or `-n`) to avoid the final press-Enter prompt when running in scripts or CI: `ghosttrace example.com --no-prompt`.
 - **Remove local PyPI token**: If you created or used a `~/.pypirc` file for publishing, remove it after publishing to avoid leaving tokens on disk.
+
+## Screenshots
+
+Main view:
+
+![Main view](images/ghosttrace_view1.png)
+
+IP scan:
+
+![IP scan](images/check_by_ip.png)
+
+Domain scan:
+
+![Domain scan](images/check_by_domain.png)
+
+Username scan:
+
+![Username scan](images/check_by_username.png)
 
 Windows PowerShell:
 
