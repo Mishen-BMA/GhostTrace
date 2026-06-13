@@ -28,8 +28,8 @@ def field(label, value, color=None):
     print(f"  {GREEN}[+]{RESET} {label:<22} {color}{value}{RESET}")
 
 def section(title):
-    print(f"\n{CYAN}  ◈  {title}{RESET}")
-    print(f"{GRAY}  {'─' * 52}{RESET}")
+    print(f"\n{CYAN}  [>]  {title}{RESET}")
+    print(f"{GRAY}  {'-' * 52}{RESET}")
 
 def error(msg):
     print(f"  {RED}[!]{RESET} {msg}")
@@ -38,7 +38,7 @@ def warn(msg):
     print(f"  {YELLOW}[~]{RESET} {msg}")
 
 def success(msg):
-    print(f"  {GREEN}[✓]{RESET} {msg}")
+    print(f"  {GREEN}[OK]{RESET} {msg}")
 
 def info(msg):
-    print(f"  {GRAY}[·]{RESET} {msg}")
+    print(f"  {GRAY}[.]{RESET} {msg}")

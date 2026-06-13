@@ -70,7 +70,7 @@ def scan_ip(ip: str) -> dict:
         except Exception as e:
             error(str(e))
     else:
-        warn("AbuseIPDB key not set — set the ABUSEIPDB_KEY environment variable or create a .env file with ABUSEIPDB_KEY=yourkey")
+        warn("AbuseIPDB key not set - set the ABUSEIPDB_KEY environment variable or create a .env file with ABUSEIPDB_KEY=yourkey")
         info("Get a free key at: https://www.abuseipdb.com/register")
 
     section("PORT SCAN  (Top 15 Common Ports)")

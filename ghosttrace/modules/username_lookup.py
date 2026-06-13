@@ -44,7 +44,7 @@ def _check(username, name, url_tpl, check_type, match, found, lock):
 
 def scan_username(username: str) -> dict:
     results = {"target": username, "type": "username"}
-    section(f"USERNAME HUNT  —  @{username}")
+    section(f"USERNAME HUNT - @{username}")
     print(f"  {GRAY}Scanning {len(PLATFORMS)} platforms, please wait...{RESET}\n")
 
     found = {}
@@ -56,7 +56,7 @@ def scan_username(username: str) -> dict:
     for t in threads: t.start()
     for t in threads: t.join()
 
-    section(f"RESULTS  —  {len(found)} of {len(PLATFORMS)} platforms matched")
+    section(f"RESULTS - {len(found)} of {len(PLATFORMS)} platforms matched")
     all_checked = []
     for name, url_tpl, _, _ in PLATFORMS:
         if name in found:

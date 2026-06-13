@@ -62,11 +62,11 @@ def main():
         print(f"\n  {RED}[!] No target provided. Exiting.{RESET}\n")
         sys.exit(1)
 
-    print(f"\n{GRAY}  {'─' * 52}{RESET}")
+    print(f"\n{GRAY}  {'-' * 52}{RESET}")
     print(f"  {GREEN}[>>]{RESET} Target  : {WHITE}{target}{RESET}")
     print(f"  {GREEN}[>>]{RESET} Type    : {WHITE}{target_type.upper()}{RESET}")
     print(f"  {GREEN}[>>]{RESET} Status  : {YELLOW}Initiating scan...{RESET}")
-    print(f"{GRAY}  {'─' * 52}{RESET}\n")
+    print(f"{GRAY}  {'-' * 52}{RESET}\n")
 
     results = {}
     if target_type == "ip":
@@ -79,11 +79,11 @@ def main():
         print(f"\n  {RED}[!] Unknown target type. Use -t ip/domain/username{RESET}\n")
         sys.exit(1)
 
-    print(f"\n{GRAY}  {'─' * 52}{RESET}")
+    print(f"\n{GRAY}  {'-' * 52}{RESET}")
 
     if args.output:
         save_report(target, target_type, results, args.output)
-        print(f"  {GREEN}[✓]{RESET} Report saved → {WHITE}{args.output}{RESET}")
+        print(f"  {GREEN}[OK]{RESET} Report saved -> {WHITE}{args.output}{RESET}")
 
     print(f"\n  {GRAY}[GhostTrace] Scan complete. Stay invisible.{RESET}\n")
     if not getattr(args, "no_prompt", False) and sys.stdin.isatty():

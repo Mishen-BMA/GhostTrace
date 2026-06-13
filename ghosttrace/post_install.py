@@ -56,7 +56,7 @@ def get_scripts_paths():
 
 def fix_path():
     if sys.platform != "win32":
-        print("Not Windows — nothing to do.")
+        print("Not Windows - nothing to do.")
         return
     try:
         import winreg

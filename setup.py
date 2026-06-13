@@ -79,10 +79,10 @@ def run_path_fix():
 			import ctypes
 			ctypes.windll.user32.SendMessageW(0xFFFF, 0x001A, 0, "Environment")
 
-			print("\n\033[92m[✓] PATH fixed! Open a NEW CMD and run: ghosttrace\033[0m\n")
+			print("\n\033[92m[OK] PATH fixed! Open a NEW CMD and run: ghosttrace\033[0m\n")
 		else:
 			winreg.CloseKey(reg_key)
-			print("\n\033[92m[✓] GhostTrace ready! Run: ghosttrace\033[0m\n")
+			print("\n\033[92m[OK] GhostTrace ready! Run: ghosttrace\033[0m\n")
 
 	except Exception as e:
 		print(f"\n\033[93m[~] Auto PATH fix failed: {e}\033[0m")
