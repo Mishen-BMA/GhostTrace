@@ -1,2 +1,3 @@
 [console_scripts]
 ghosttrace = ghosttrace.__main__:main
+ghosttrace-fixpath = ghosttrace.post_install:main

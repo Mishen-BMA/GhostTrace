@@ -9,6 +9,7 @@ setup.cfg
 setup.py
 ghosttrace/__init__.py
 ghosttrace/__main__.py
+ghosttrace/post_install.py
 ghosttrace/modules/__init__.py
 ghosttrace/modules/banner.py
 ghosttrace/modules/colors.py

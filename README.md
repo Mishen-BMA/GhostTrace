@@ -22,7 +22,7 @@ ghosttrace example.com
 If you want to run `ghosttrace-osint` from the repository instead of PyPI:
 
 ```bash
-git clone https://github.com/YOURUSERNAME/ghosttrace.git
+git clone https://github.com/Mishen-BMA/ghosttrace.git
 cd GhostTrace
 pip install -r requirements.txt
 pip install -e .
@@ -86,7 +86,7 @@ py -m pipx install ghosttrace-osint
 
 ## Configuration
 
-- **AbuseIPDB key**: To enable AbuseIPDB threat lookups set the `ABUSEIPDB_KEY` environment variable (or create a `.env` file with `ABUSEIPDB_KEY=yourkey`). If not set, the tool skips AbuseIPDB checks.
+- **AbuseIPDB key**: To enable AbuseIPDB threat lookups set the `ABUSEIPDB_KEY` environment variable or create a `.env` file with `ABUSEIPDB_KEY=yourkey`. If not set, the tool skips AbuseIPDB checks.
 - **Non-interactive runs**: Use `--no-prompt` (or `-n`) to avoid the final press-Enter prompt when running in scripts or CI: `ghosttrace example.com --no-prompt`.
 - **Remove local PyPI token**: If you created or used a `~/.pypirc` file for publishing, remove it after publishing to avoid leaving tokens on disk.
 

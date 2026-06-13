@@ -1,10 +1,9 @@
 Metadata-Version: 2.4
 Name: ghosttrace-osint
-Version: 1.0.3
+Version: 1.0.4
 Summary: OSINT Recon Engine — IP, Domain, Username Intelligence
-Home-page: https://github.com/YOURUSERNAME/ghosttrace
-Author: YourName
-Author-email: youremail@gmail.com
+Home-page: https://github.com/Mishen-BMA/ghosttrace
+Author: Mishen-BMA
 License: MIT
 Classifier: Programming Language :: Python :: 3
 Classifier: License :: OSI Approved :: MIT License
@@ -20,16 +19,6 @@ Dynamic: license-file
 # ghosttrace-osint
 
 `ghosttrace-osint` is an OSINT reconnaissance tool for IP addresses, domains, and usernames.
-
-## Important
-
-There is already a different package named `ghosttrace` on PyPI. Install this project as `ghosttrace-osint`.
-
-If you previously installed the conflicting package, remove it first:
-
-```bash
-pip uninstall ghosttrace
-```
 
 ## Install
 
@@ -51,7 +40,7 @@ ghosttrace example.com
 If you want to run `ghosttrace-osint` from the repository instead of PyPI:
 
 ```bash
-git clone https://github.com/YOURUSERNAME/ghosttrace.git
+git clone https://github.com/Mishen-BMA/ghosttrace.git
 cd GhostTrace
 pip install -r requirements.txt
 pip install -e .
@@ -87,21 +76,35 @@ ghosttrace example.com -t domain
 ghosttrace johndoe -t username
 ```
 
-If `ghosttrace` is not recognized in Windows CMD/PowerShell after install:
+If `ghosttrace` is not recognized in Windows CMD/PowerShell after install, try the included fixer:
 
 ```powershell
-py -m pip install --upgrade --force-reinstall ghosttrace-osint
+py -m ghosttrace.post_install
 ```
 
-Then close and reopen the terminal and run:
+If the `ghosttrace-fixpath` console script was installed and is on PATH, you can run instead:
+
+```powershell
+ghosttrace-fixpath
+```
+
+After running the fixer, close and reopen your terminal, then run:
 
 ```powershell
 ghosttrace --help
 ```
 
+Recommended: use `pipx` for CLI tools to avoid PATH issues:
+
+```powershell
+py -m pip install --user pipx
+py -m pipx ensurepath
+py -m pipx install ghosttrace-osint
+```
+
 ## Configuration
 
-- **AbuseIPDB key**: To enable AbuseIPDB threat lookups set the `ABUSEIPDB_KEY` environment variable (or create a `.env` file with `ABUSEIPDB_KEY=yourkey`). If not set, the tool skips AbuseIPDB checks.
+- **AbuseIPDB key**: To enable AbuseIPDB threat lookups set the `ABUSEIPDB_KEY` environment variable or create a `.env` file with `ABUSEIPDB_KEY=yourkey`. If not set, the tool skips AbuseIPDB checks.
 - **Non-interactive runs**: Use `--no-prompt` (or `-n`) to avoid the final press-Enter prompt when running in scripts or CI: `ghosttrace example.com --no-prompt`.
 - **Remove local PyPI token**: If you created or used a `~/.pypirc` file for publishing, remove it after publishing to avoid leaving tokens on disk.
 
